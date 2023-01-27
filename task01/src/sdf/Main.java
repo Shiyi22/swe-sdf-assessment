@@ -91,8 +91,8 @@ public class Main {
         }
 
         // #7 print out the top 10 using iterator 
-        Set<Map.Entry<String, Double>> entries = sortedMap.entrySet(); 
-        Iterator<Map.Entry<String, Double>> iterator = entries.iterator(); 
+        Set<Map.Entry<String, Double>> wordSet = sortedMap.entrySet(); 
+        Iterator<Map.Entry<String, Double>> iterator = wordSet.iterator(); 
         
         int count = 0; 
         DecimalFormat df = new DecimalFormat("#.###"); 
