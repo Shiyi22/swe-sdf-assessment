@@ -2,8 +2,8 @@ package sdf;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,9 +18,9 @@ import java.util.Set;
 public class Main {
     /**
      * @param args
-     * @throws FileNotFoundException
+     * @throws IOException
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 
         // #1 get file name and check if string argument is correct 
         if (!(args.length == 1)) {
@@ -42,6 +42,7 @@ public class Main {
         List<String> allWords = new ArrayList<>(); 
 
         lines = br.lines().filter(line->!line.isEmpty()).toList(); 
+        br.close();
         //System.out.println(lines);
         String[] words = null; 
 
