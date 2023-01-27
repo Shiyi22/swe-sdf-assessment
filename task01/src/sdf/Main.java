@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,7 +24,7 @@ public class Main {
 
         // #1 get file name and check if string argument is correct 
         if (!(args.length == 1)) {
-            System.err.println("Please only enter 1 text file name to be processed");
+            System.err.println("Please enter 1 text file name to be processed");
             System.exit(1);
         } 
         File fileName = new File("./src/sdf/files/" + args[0]);  
@@ -40,8 +41,8 @@ public class Main {
         List<String> lines = new ArrayList<>();
         List<String> allWords = new ArrayList<>(); 
 
-        lines = br.lines().toList(); 
-        // System.out.println(lines);
+        lines = br.lines().filter(line->!line.isEmpty()).toList(); 
+        //System.out.println(lines);
         String[] words = null; 
 
         for (String line : lines) {
@@ -69,7 +70,7 @@ public class Main {
             }
             wordsMap.put(each, wordsMap.get(each) + 1);
         }
-        // System.out.println(wordsMap);
+        //System.out.println(wordsMap);
 
         // #5 use the hashmap to calculate term frequency for all unique words and replace the value 
         Double freq = 0.0d; 
@@ -93,10 +94,12 @@ public class Main {
         Iterator<Map.Entry<String, Double>> iterator = entries.iterator(); 
         
         int count = 0; 
+        DecimalFormat df = new DecimalFormat("#.###"); 
+        System.out.println();
         System.out.println("The top 10 words with the highest frequency are:");
         while (iterator.hasNext() && count < 10) {
             Map.Entry<String, Double> entry = iterator.next(); 
-            System.out.println("Word: " + entry.getKey() + ", " + "Term-frequency : " + entry.getValue());
+            System.out.println("Word " + String.valueOf(count+1)  + ": \"" + entry.getKey() + "\", " + "Term-frequency: " + df.format(entry.getValue()));
             count ++;
         }
     }
